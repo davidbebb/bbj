@@ -29,6 +29,11 @@ describe DockingStation do
 		end
 	end
 
+	it do
+		station = DockingStation.new
+		expect(station.capacity).to eq DockingStation::DEFAULT_CAPACITY
+	end
+
 
 end 
 
