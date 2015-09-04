@@ -5,6 +5,8 @@ class DockingStation
 
 	attr_reader :capacity
 
+	attr_reader :bikes
+
 	def initialize
 		@bikes = []
 		@broken=[]
@@ -31,9 +33,16 @@ class DockingStation
 		@broken
 	end
 
+	def remove_broken_bikes 
+		broken_bikes = self.list_broken_bikes
+		@bikes = @bikes - broken_bikes
+		broken_bikes
+	end
+		
+
+
 	private
 
-	attr_reader :bikes
 
 	def full?
 		bikes.count >= capacity
@@ -43,3 +52,5 @@ class DockingStation
 		bikes == []
 	end
 end
+
+

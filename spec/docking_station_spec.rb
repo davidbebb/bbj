@@ -1,5 +1,6 @@
 require "docking_station"
 
+
 describe DockingStation do
 	it { is_expected.to respond_to (:release_bike) }
 
@@ -34,6 +35,21 @@ describe DockingStation do
 			bike_new = 'bobo'
 			station1.capacity.times{station1.dock(bike_new)}
 			expect{ station1.dock bike_new }.to raise_error 'Docking station full'
+		end
+	end
+
+	describe '#remove_broken_bikes' do
+		it 'removes broken bikes' do
+			bike_1 = double(:bike, working?:false)
+			bike_2 = double(:bike, working?:true)
+			bike_3 = double(:bike, working?:false)
+			bike_4 = double(:bike, working?:true)
+			subject.dock(bike_1)
+			subject.dock(bike_2)
+			subject.dock(bike_3)
+			subject.dock(bike_4)
+			expect(subject.remove_broken_bikes).to eq([bike_1,bike_3])
+			expect(subject.bikes).to eq([bike_2,bike_4])
 		end
 	end
 
