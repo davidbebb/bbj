@@ -9,7 +9,7 @@ class DockingStation
 
 	def initialize
 		@bikes = []
-		@broken=[]
+
 		@capacity = DEFAULT_CAPACITY
 	end
 
@@ -29,16 +29,17 @@ class DockingStation
 	end
 
 	def list_broken_bikes
-		@bikes.each {|b| @broken<<b if !b.working?}
-		@broken
+		broken=[]
+		@bikes.each {|b| broken<<b if !b.working?}
+		broken
 	end
 
-	def remove_broken_bikes 
+	def remove_broken_bikes
 		broken_bikes = self.list_broken_bikes
 		@bikes = @bikes - broken_bikes
 		broken_bikes
 	end
-		
+
 
 
 	private
@@ -52,5 +53,3 @@ class DockingStation
 		bikes == []
 	end
 end
-
-

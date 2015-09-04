@@ -1,26 +1,23 @@
 
 require "van"
-require 'docking_station'
-require 'bike'
 
 describe Van  do
 
-	# describe '#remove_broken_bikes' do
-	# 	it 'removes broken bikes' do
-	# 		dock1 = DockingStation.new
+  it 'responds to get_broken_bikes' do
+    expect(subject).to respond_to(:get_broken_bikes).with(1).argument
+  end
 
-	# 		bike1= Bike.new.report_broken
-	# 		dock1.dock bike1
-	
-	# 		bike2= Bike.new
-	# 		dock1.dock bike2
-	
-
-	# 		expect(subject.remove_broken_bikes(dock1)).to eq([bike1])
-	# 	end
-	# end
+  it 'gets broken bikes from dock' do
+    bike_1 = double(:bike)#, working?:false)
+#    bike_2 = double(:bike, working?:true)
+    bike_3 = double(:bike)#, working?:false)
+#    bike_4 = double(:bike, working?:true)
+    dock = double(:ds, list_broken_bikes:[bike_1,bike_3])
+    expect(subject.get_broken_bikes(dock)).to eq([bike_1, bike_3])
 
 
+
+  end
 
 
 
