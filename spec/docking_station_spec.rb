@@ -6,9 +6,13 @@ describe DockingStation do
 
 
 	it 'releases working bikes' do
-		subject.dock Bike.new
-		bike = subject.release_bike
-		expect(bike).to be_working
+		# subject.dock Bike.new
+		# bike = subject.release_bike
+		bike = double( :bike, working?:true)
+		subject.dock bike
+		b=subject.release_bike
+		# expect(b.report_broken).to eq('broken')
+		expect(b).to be_working
 	end
 
 	it { is_expected.to respond_to(:dock).with(1).argument }
@@ -43,5 +47,4 @@ describe DockingStation do
 	end
 
 
-end 
-
+end
