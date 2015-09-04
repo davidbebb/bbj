@@ -1,12 +1,13 @@
 require_relative 'bike'
 
-class DockingStation 
+class DockingStation
 	DEFAULT_CAPACITY = 20
 
 	attr_reader :capacity
 
 	def initialize
 		@bikes = []
+		@broken=[]
 		@capacity = DEFAULT_CAPACITY
 	end
 
@@ -25,6 +26,11 @@ class DockingStation
 		capacity = new_cap
 	end
 
+	def list_broken_bikes
+		@bikes.each {|b| @broken<<b if !b.working?}
+		@broken
+	end
+
 	private
 
 	attr_reader :bikes
@@ -37,10 +43,3 @@ class DockingStation
 		bikes == []
 	end
 end
-
-
-
-
-
-
-
