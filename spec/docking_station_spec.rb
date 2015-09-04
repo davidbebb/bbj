@@ -1,4 +1,3 @@
-
 require "docking_station"
 
 describe DockingStation do
@@ -22,8 +21,7 @@ describe DockingStation do
 			expect { subject.release_bike }.to raise_error 'No bikes available'
 		end
 		it 'raises an error when there is only one broken bike available' do
-			bike_new = Bike.new
-			bike_new.report_broken
+			bike_new = double(:bike, working?:false)
 			subject.dock bike_new
 			expect{subject.release_bike}.to raise_error 'No bikes available'
 		end
